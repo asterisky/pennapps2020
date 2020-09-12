@@ -34,11 +34,11 @@ public class StudyGroup {
 	/**
 	 * Creates a study group with given course and initialize remaining fields
 	 */
-	public StudyGroup(String id) {
+	public StudyGroup(String id, int[][] schedule) {
 		this.id = id;
 		this.users = new ArrayList<User>();
 		this.full = false;
-		this.schedule = new int[7][24];
+		this.schedule = schedule; //new int[7][24];
 	}
 	
 	// Getter functions

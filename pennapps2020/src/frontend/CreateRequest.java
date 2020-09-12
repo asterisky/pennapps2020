@@ -11,7 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.*;
 
-public class CreateRequest extends Application implements EventHandler{
+public abstract class CreateRequest extends Application implements EventHandler{
 	
 	Stage window;
 	Scene selCourse, userInfo, selTimes;
