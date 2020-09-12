@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.*;
 
 public class CreateRequest extends Application implements EventHandler{
@@ -28,9 +29,10 @@ public class CreateRequest extends Application implements EventHandler{
 		//create scenes
 		setCourseSel();
 		setUserInfo();
+		setSelTimes();
 		
 		//add the pane to the scene
-		primaryStage.setScene(selCourse);
+		primaryStage.setScene(selTimes);
 		primaryStage.show();
 	}
 
@@ -181,6 +183,53 @@ public class CreateRequest extends Application implements EventHandler{
 		
 		userInfo = new Scene(uInfo);
 
+	}
+	
+	protected void setSelTimes() {
+		//page to request user info
+		//set up pane
+		
+		GridPane calendar = new GridPane();
+		calendar.setMinSize(500, 500);
+		calendar.setVgap(10);
+		calendar.setHgap(10);
+		
+//		//set buttons and labels
+//		Text getInfo = new Text("Please indicate your availability for the next week:");
+//		getInfo.setFont(Font.font("Arial", 25));
+//		getInfo.setFill(Color.BLUE);
+//		Pane heading = new Pane(getInfo);
+//		StackPane rootPane = new StackPane();
+//		selTimes = new Scene(rootPane);
+//		rootPane.getChildren().add(heading);
+
+		
+		//calendar.add(getInfo, 1, 0);
+		for(int i = 0; i < 24; i++) {
+			Label calHour;
+			if(i < 12) {
+			String hour = Integer.toString(i + 1);
+			calHour = new Label(hour + "am");
+			}
+			else {
+			String hour = Integer.toString(i - 11);
+			calHour = new Label(hour + "pm");
+			}
+			calendar.add(calHour, i+1, 1);
+		}
+		char[] daysOfWeek = new char[] {'S','M','T','W','T','F','S'};
+		for(int i = 0; i < 7; i++) {
+			String dayLabel = Character.toString(daysOfWeek[i]);
+			Text day = new Text(dayLabel);
+			calendar.add(day, 0, i + 2);
+			for(int j = 1; j < 25; j++) {
+				CheckBox checkBox = new CheckBox();
+				calendar.add(checkBox, j, i +2);
+			}
+		}
+		
+		selTimes = new Scene(calendar);
+				
 	}
 
 	public static void main(String[] args) {
