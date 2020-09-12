@@ -1,13 +1,13 @@
 package Processor;
 
 import data.StudyGroup;
-import java.util.ArrayList;
+import data.User;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.UUID;
 
-public class ScheduleMatcher {
+public class ScheduleManager {
 
   //TODO make private once constructor is ready
   Map<String, TreeMap<UUID, StudyGroup>> studyGroups = new HashMap<>();
@@ -17,7 +17,7 @@ public class ScheduleMatcher {
 
   //TODO remove main - only here for testing
   public static void main(String[] args) {
-    ScheduleMatcher sm = new ScheduleMatcher();
+    ScheduleManager sm = new ScheduleManager();
     TreeMap<UUID, StudyGroup> treeMap = new TreeMap<>();
     int[][] schedule1 = {{0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0},
         {0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0,
@@ -101,15 +101,26 @@ public class ScheduleMatcher {
     }
     //System.out.println(bestMatch.getId());
 
-    //Calculate new Schedule for Study Group to show user
-    int[][] newSchedule = mergeSchedule(bestMatch.getSchedule(),timetable);
-
-    //update StudyGroup with new schedule but not yet saved to Map Data Base in ScheduleMatcher
-    //only done once user confirms that joins study group
-
-    bestMatch.setSchedule(newSchedule);
-
     return bestMatch;
+
+  }
+
+  void addUserToStudyGroup(StudyGroup sg, User user) {
+
+    //Calculate new Schedule for Study Group and update it
+    int[][] newSchedule = mergeSchedule(sg.getSchedule(), user.getSchedule());
+    sg.setSchedule(newSchedule);
+
+    //add User
+    sg.addUser(user);
+
+    //Check if StudyGroup reached capacity, update
+    if (sg.getMembers().size() >= 4) {
+      sg.setFull(true);
+    }
+
+    //update study group in running DB
+    studyGroups.get(sg.getCategory()).put(sg.getId(), sg);
 
   }
 

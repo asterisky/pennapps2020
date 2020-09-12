@@ -15,6 +15,10 @@ public class StudyGroup {
 	
 	// Private instance fields
 
+	public void setFull(boolean full) {
+		this.full = full;
+	}
+
 	private boolean full;
 	int[][] schedule;
 
