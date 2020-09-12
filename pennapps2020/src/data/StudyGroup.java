@@ -1,110 +1,123 @@
 package data;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 /**
- * The study group composed of users and the course that they want to 
+ * The study group composed of members and the category that they want to 
  * study about with each other
- * TODO - Need a way to represent meeting time (better way to represent date 
- * and time)
  * @author 
  */
 public class StudyGroup {
 	
 	// Private instance fields
 
-	public void setFull(boolean full) {
-		this.full = full;
-	}
-
-	private boolean full;
-	int[][] schedule;
-
-
-
-	UUID id;
-	ArrayList<User> members = new ArrayList<>();
-	
 	/**
-	 * List of users in the study group
+	 * Indicates whether the study group is full or not
 	 */
-	private List<User> users;
+	private boolean full;
 	
 	/**
-	 * The course the users want to study with each other about
+	 * The combined availability schedule of all the members in the study group
+	 */
+	private int[][] schedule;
+	
+	/**
+	 * A unique id of the study group
+	 */
+	private UUID id;
+	
+	/**
+	 * List of members in the study group
+	 */
+	private ArrayList<User> members;
+	
+	/**
+	 * The category the users want to study with each other about
 	 */
 	private String category;
 	
 	// Constructor
 
-
-
-
 	/**
-	 * Creates a study group with given course and initialize remaining fields
+	 * Creates a study group with given category and schedule, and 
+	 * initialize remaining fields
 	 */
 	public StudyGroup(String category, int[][] schedule) {
 		this.category = category;
-		this.users = new ArrayList<User>();
 		this.full = false;
-		this.schedule = schedule; //new int[7][24];
+		this.schedule = schedule; // new int[7][24];
 		this.id = UUID.randomUUID();
+		this.members = new ArrayList<>();
 	}
 	
 	// Getter functions
-	
+
 	/**
-	 * Gets the users of the study group
-	 * @return users of the study group
+	 * Gets the schedule of the study group
+	 * @return schedule of the study group
 	 */
-	public List<User> getUsers() {
-		return this.users;
-	}
-
 	public int[][] getSchedule() {
-		return schedule;
+		return this.schedule;
 	}
 
+	/**
+	 * Gets the category of the study group
+	 * @return category of the study group
+	 */
 	public String getCategory() {
-		return category;
+		return this.category;
 	}
 
-
+	/**
+	 * Gets whether the study is full
+	 * @return full or not full
+	 */
 	public boolean isFull() {
-		return full;
+		return this.full;
 	}
 
+	/**
+	 * Gets the unique id of the study group
+	 * @return id of the study group
+	 */
 	public UUID getId() {
-		return id;
+		return this.id;
 	}
 
+	/**
+	 * Gets all the members in the study group
+	 * @return members of the study group
+	 */
 	public ArrayList<User> getMembers() {
-		return members;
+		return this.members;
 	}
-
 
 	// Setter functions
 	
 	/**
-	 * Sets the course of the study group
+	 * Sets the schedule of the study group
+	 * @param schedule of the study group
 	 */
-	//public void setCourse(Course course) {
-	//	this.course = course;
-	//}
+	public void setSchedule(int[][] schedule) {
+		this.schedule = schedule;
+	}
+	
+	/**
+	 * Sets the study group to be full
+	 * @param full study group
+	 */
+	public void setFull(boolean full) {
+		this.full = full;
+	}
 	
 	// Adder functions
 	
 	/**
-	 * Adds a user into the list of users in the study group
-	 * @param user to be added
+	 * Adds a member into the list of members in the study group
+	 * @param member to be added
 	 */
-	public void addUser(User user) {
-		this.users.add(user);
-	}
-
-	public void setSchedule(int[][] schedule) {
-		this.schedule = schedule;
+	public void addMember(User member) {
+		this.members.add(member);
 	}
 }

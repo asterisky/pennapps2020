@@ -60,7 +60,7 @@ public class JavaMail {
 	 * @param recipient of the message
 	 * @param subject of the message
 	 * @param text of the message
-	 * @return
+	 * @return message to be sent
 	 */
 	private static Message prepMessage(Session session, String myAccountEmail, 
 									   String recipient, String subject, 

@@ -112,7 +112,7 @@ public class ScheduleManager {
     sg.setSchedule(newSchedule);
 
     //add User
-    sg.addUser(user);
+    sg.addMember(user);
 
     //Check if StudyGroup reached capacity, update
     if (sg.getMembers().size() >= 4) {
