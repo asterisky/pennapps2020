@@ -13,10 +13,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.*;
 
-public abstract class CreateRequest extends Application implements EventHandler{
+public class CreateRequest extends Application implements EventHandler{
 	
 	Stage window;
-	Scene home, selCourse, userInfo, selTimes;
+	Scene selCourse, userInfo, selTimes;
 
 	
 	@Override
