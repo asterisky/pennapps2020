@@ -13,6 +13,9 @@ import java.util.List;
 public class StudyGroup {
 	
 	// Private instance fields
+
+	private boolean full;
+	int[][] schedule;
 	
 	/**
 	 * List of users in the study group
@@ -22,16 +25,20 @@ public class StudyGroup {
 	/**
 	 * The course the users want to study with each other about
 	 */
-	private Course course;
+	private String id;
 	
 	// Constructor
-	
+
+
+
 	/**
 	 * Creates a study group with given course and initialize remaining fields
 	 */
-	public StudyGroup(Course course) {
-		this.setCourse(course);
+	public StudyGroup(String id) {
+		this.id = id;
 		this.users = new ArrayList<User>();
+		this.full = false;
+		this.schedule = new int[7][24];
 	}
 	
 	// Getter functions
@@ -43,23 +50,29 @@ public class StudyGroup {
 	public List<User> getUsers() {
 		return this.users;
 	}
-	
-	/**
-	 * Gets the course the users want to study with each other about
-	 * @return course of the study group
-	 */
-	public Course getCourse() {
-		return this.course;
+
+	public int[][] getSchedule() {
+		return schedule;
 	}
-	
+
+	public String getId() {
+		return id;
+	}
+
+
+	public boolean isFull() {
+		return full;
+	}
+
+
 	// Setter functions
 	
 	/**
 	 * Sets the course of the study group
 	 */
-	public void setCourse(Course course) {
-		this.course = course;
-	}
+	//public void setCourse(Course course) {
+	//	this.course = course;
+	//}
 	
 	// Adder functions
 	
