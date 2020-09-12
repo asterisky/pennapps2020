@@ -37,6 +37,7 @@ public class StudyGroup {
 
 
 
+
 	/**
 	 * Creates a study group with given course and initialize remaining fields
 	 */
@@ -98,5 +99,8 @@ public class StudyGroup {
 	public void addUser(User user) {
 		this.users.add(user);
 	}
-	
+
+	public void setSchedule(int[][] schedule) {
+		this.schedule = schedule;
+	}
 }
