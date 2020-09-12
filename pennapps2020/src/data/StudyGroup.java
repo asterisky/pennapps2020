@@ -2,6 +2,7 @@ package data;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * The study group composed of users and the course that they want to 
@@ -16,6 +17,11 @@ public class StudyGroup {
 
 	private boolean full;
 	int[][] schedule;
+
+
+
+	UUID id;
+	ArrayList<User> members = new ArrayList<>();
 	
 	/**
 	 * List of users in the study group
@@ -25,7 +31,7 @@ public class StudyGroup {
 	/**
 	 * The course the users want to study with each other about
 	 */
-	private String id;
+	private String category;
 	
 	// Constructor
 
@@ -34,11 +40,12 @@ public class StudyGroup {
 	/**
 	 * Creates a study group with given course and initialize remaining fields
 	 */
-	public StudyGroup(String id, int[][] schedule) {
-		this.id = id;
+	public StudyGroup(String category, int[][] schedule) {
+		this.category = category;
 		this.users = new ArrayList<User>();
 		this.full = false;
 		this.schedule = schedule; //new int[7][24];
+		this.id = UUID.randomUUID();
 	}
 	
 	// Getter functions
@@ -55,13 +62,21 @@ public class StudyGroup {
 		return schedule;
 	}
 
-	public String getId() {
-		return id;
+	public String getCategory() {
+		return category;
 	}
 
 
 	public boolean isFull() {
 		return full;
+	}
+
+	public UUID getId() {
+		return id;
+	}
+
+	public ArrayList<User> getMembers() {
+		return members;
 	}
 
 
