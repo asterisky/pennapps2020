@@ -124,6 +124,23 @@ public class ScheduleManager {
 
   }
 
+  void addNewStudyGroup(StudyGroup sg, String category){
+    //error checking
+    if (category == null || !studyGroups.keySet().contains(category)) {
+      System.out.println("Key invalid");
+      return;
+    }
+
+    if(studyGroups.get(category).keySet().contains(sg.getId())){
+      System.out.println("StudyGroup with this ID exists already");
+      return;
+    }
+
+    studyGroups.get(category).put(sg.getId(),sg);
+
+  }
+
+
   //HelperMethod - Calculate new schedule based on current studygroup schedule and new user added
   private int[][] mergeSchedule(int[][] scheduleGroup, int[][] scheduleUser) {
 
