@@ -1,6 +1,8 @@
 package frontend;
 
 import javafx.application.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.*;
 import javafx.geometry.*;
 import javafx.scene.*;
@@ -120,21 +122,42 @@ public class CreateRequest extends Application implements EventHandler{
 		//set up pane
 		GridPane uInfo = new GridPane();
 		uInfo.setMinSize(500, 500);
+		uInfo.setPadding(new Insets(25,25,25,25));
 		uInfo.setVgap(10);
 		uInfo.setHgap(10);
 		
 		//set buttons and labels
-		Label getInfo = new Label("We need some information to help find you a study group.");
-		getInfo.setFont(Font.font("Arial", 30));
+		Label getInfo = new Label("  We need some information " + "\n" + "to help find you a study group.");
+		getInfo.setFont(Font.font("Arial", 25));
 		getInfo.setTextFill(Color.BLUE);
+		getInfo.setAlignment(Pos.CENTER);
 		
-		Label nameLabel = new Label("Name: ");
+		Label nameLabel = new Label("Name:  ");
 		nameLabel.setFont(Font.font("Arial", 16));
 		TextField nameField = new TextField();
+		nameField.setMaxWidth(350.00);
+		
+		Label emailLabel = new Label("Email: ");
+		emailLabel.setFont(Font.font("Arial", 16));
+		TextField emailField = new TextField();
+		emailField.setMaxWidth(350.00);
+		
+		Label dropLabel = new Label("Time: ");
+		dropLabel.setFont(Font.font("Arial", 16));
+		ObservableList<String> timezones = FXCollections.observableArrayList(
+			"Timezone1",
+			"Timezone2",
+			"Timezone3"
+		);
+		ComboBox timeDropdown = new ComboBox(timezones);
 		
 		uInfo.add(getInfo, 1, 0);
-		uInfo.add(nameLabel, 0, 1);
-		uInfo.add(nameField, 1, 1);
+		uInfo.add(nameLabel, 0, 2);
+		uInfo.add(nameField, 1, 2);
+		uInfo.add(emailLabel, 0, 3);
+		uInfo.add(emailField, 1, 3);
+		uInfo.add(dropLabel, 0, 4);
+		uInfo.add(timeDropdown, 1, 4);
 		
 		userInfo = new Scene(uInfo);
 
