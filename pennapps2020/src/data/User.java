@@ -47,6 +47,13 @@ public class User {
 	 * The time blocks the user is available to meet
 	 */
 	private List<TimeBlock> timeBlocks;
+
+	public int[][] getSchedule() {
+		return schedule;
+	}
+
+	//User has Schedule
+	int[][] schedule;
 	
 	/**
 	 * The courses the user are taking
