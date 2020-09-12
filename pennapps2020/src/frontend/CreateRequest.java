@@ -16,15 +16,8 @@ import javafx.stage.*;
 public class CreateRequest extends Application implements EventHandler{
 	
 	Stage window;
-	Scene selCourse, userInfo, selTimes;
+	Scene home, selCourse, userInfo, selTimes;
 
-	//event handler for button click
-	EventHandler<ActionEvent> buttonClick = new EventHandler<ActionEvent>() {
-		@Override
-		public void handle(ActionEvent e) {
-			window.setScene(userInfo);
-		}
-	};
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception{
@@ -56,6 +49,15 @@ public class CreateRequest extends Application implements EventHandler{
 		Label selCorLabel = new Label("Select a course:");
 		selCorLabel.setFont(Font.font("Arial", 30));
 		selCorLabel.setTextFill(Color.BLUE);
+		
+		//event handler for button click
+		EventHandler<ActionEvent> buttonClick = new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent e) {
+					window.setScene(userInfo);
+				
+			}
+		};
 		
 		Button c591 = new Button("591");
 		c591.setMinSize(65,50);
@@ -111,6 +113,7 @@ public class CreateRequest extends Application implements EventHandler{
 		root.add(optionsTopRow, 1, 1);
 		root.add(optionsBotRow, 1, 2);
 		
+		
 		//place labels and buttons in the pane
 		root.setAlignment(Pos.CENTER);
 		
@@ -151,6 +154,20 @@ public class CreateRequest extends Application implements EventHandler{
 		);
 		ComboBox timeDropdown = new ComboBox(timezones);
 		
+		//event handler for button click
+		EventHandler<ActionEvent> buttonClick = new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent e) {
+					window.setScene(selCourse);
+				
+			}
+		};
+		Button submitInfo = new Button("next");
+		submitInfo.setMinSize(65,50);
+		submitInfo.setFont(Font.font("Arial", 22));
+		submitInfo.setOnAction(buttonClick);
+		
+		//add elements to layout
 		uInfo.add(getInfo, 1, 0);
 		uInfo.add(nameLabel, 0, 2);
 		uInfo.add(nameField, 1, 2);
@@ -158,6 +175,9 @@ public class CreateRequest extends Application implements EventHandler{
 		uInfo.add(emailField, 1, 3);
 		uInfo.add(dropLabel, 0, 4);
 		uInfo.add(timeDropdown, 1, 4);
+		uInfo.add(submitInfo, 1, 6);
+		
+		
 		
 		userInfo = new Scene(uInfo);
 
@@ -165,6 +185,12 @@ public class CreateRequest extends Application implements EventHandler{
 
 	public static void main(String[] args) {
 		launch(args);
+	}
+
+	@Override
+	public void handle(Event event) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
