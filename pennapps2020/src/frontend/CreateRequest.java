@@ -24,7 +24,7 @@ import javafx.stage.*;
 public class CreateRequest extends Application implements EventHandler{
 	
 	Stage window;
-	Scene home, selCourse, userInfo, selTimes;
+	Scene home, selCourse, userInfo, selTimes, submitted;
 
 	
 	@Override
@@ -38,6 +38,7 @@ public class CreateRequest extends Application implements EventHandler{
 		setCourseSel();
 		setUserInfo();
 		setSelTimes();
+		setSubmitted();
 		
 		//add the pane to the scene
 		primaryStage.setScene(home);
@@ -55,7 +56,7 @@ public class CreateRequest extends Application implements EventHandler{
 		
 		
 		//set buttons and labels
-//		FileInputStream picStream = new FileInputStream("/pennapps2020/pennapps2020/logo.png");
+//		FileInputStream picStream = new FileInputStream("/pennapps2020/pennapps2020/src/logo.png");
 //		Image image = new Image(picStream);
 //		ImageView banner = new ImageView(image);
 		
@@ -311,7 +312,7 @@ public class CreateRequest extends Application implements EventHandler{
 		EventHandler<ActionEvent> buttonClick = new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
-					window.setScene(selCourse);
+					window.setScene(submitted);
 				
 			}
 		};
@@ -323,6 +324,48 @@ public class CreateRequest extends Application implements EventHandler{
 		
 		selTimes = new Scene(calendar);
 				
+	}
+	
+	protected void setSubmitted(){
+		//page to request user info
+		//set up pane
+		GridPane splash = new GridPane();
+		splash.setMinSize(500, 500);
+		splash.setPadding(new Insets(25,25,25,25));
+		splash.setVgap(10);
+		splash.setHgap(10);
+		
+		Label msg = new Label("Your request has been accepted!");
+		msg.setFont(Font.font("Arial", 25));
+		msg.setTextFill(Color.BLUE);
+		msg.setAlignment(Pos.CENTER);
+		splash.add(msg, 2, 0);
+		
+		//event handler for button click
+		EventHandler<ActionEvent> buttonClick = new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent e) {
+					window.setScene(home);
+				
+			}
+		};
+		
+		Text text = new Text("Your study group request is being processed.  You'll get an email and suggested meeting time when a group is found." + "\n" + "Meanwhile, you can relax and freshen up before you study group & chill.");
+		text.setFont(Font.font("Arial", 16));
+		
+		splash.add(text, 2, 1);
+		Button end = new Button("awesome!");
+		end.setMinSize(65,50);
+		end.setFont(Font.font("Arial", 22));
+		end.setOnAction(buttonClick);
+		
+		//add elements to layout
+
+		splash.add(end, 2, 2);
+		
+		
+		submitted = new Scene(splash);
+
 	}
 
 	public static void main(String[] args) {
