@@ -34,7 +34,7 @@ public class CreateRequest extends Application implements EventHandler{
 		setSelTimes();
 		
 		//add the pane to the scene
-		primaryStage.setScene(selTimes);
+		primaryStage.setScene(selCourse);
 		primaryStage.show();
 	}
 
@@ -73,7 +73,7 @@ public class CreateRequest extends Application implements EventHandler{
 		c592.setFont(Font.font("Arial", 22));
 		c592.setOnAction(buttonClick);
 		
-		Button c593 = new Button("593 <3");
+		Button c593 = new Button("593");
 		c593.setMinSize(65,50);
 		c593.setFont(Font.font("Arial", 22));
 		c593.setOnAction(buttonClick);
@@ -162,7 +162,7 @@ public class CreateRequest extends Application implements EventHandler{
 		EventHandler<ActionEvent> buttonClick = new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
-					window.setScene(selCourse);
+					window.setScene(selTimes);
 				
 			}
 		};
@@ -254,6 +254,19 @@ public class CreateRequest extends Application implements EventHandler{
 			}
 		}
 		
+		//event handler for button click
+		EventHandler<ActionEvent> buttonClick = new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent e) {
+					window.setScene(selCourse);
+				
+			}
+		};
+		Button submitInfo = new Button("submit");
+		submitInfo.setMinSize(65,50);
+		submitInfo.setFont(Font.font("Arial", 22));
+		submitInfo.setOnAction(buttonClick);
+		calendar.add(submitInfo, 12, 26);
 		
 		selTimes = new Scene(calendar);
 				
