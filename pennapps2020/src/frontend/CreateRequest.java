@@ -1,6 +1,8 @@
 package frontend;
 
 import javafx.application.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.*;
@@ -224,9 +226,27 @@ public class CreateRequest extends Application implements EventHandler{
 			calendar.add(day, 0, i + 2);
 			for(int j = 1; j < 25; j++) {
 				CheckBox checkBox = new CheckBox();
+				
+				checkBox.selectedProperty().addListener(new ChangeListener<Boolean>() {
+
+
+					@Override
+					public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue,
+							Boolean newValue) {
+						if(newValue) {
+							System.out.println("ok");
+						}
+						if(!newValue) {
+							System.out.println("ko");
+						}
+					}
+				});
+				
+				
 				calendar.add(checkBox, j, i +2);
 			}
 		}
+		
 		
 		selTimes = new Scene(calendar);
 				
