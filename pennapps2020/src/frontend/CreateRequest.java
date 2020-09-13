@@ -211,14 +211,21 @@ public class CreateRequest extends Application implements EventHandler{
 			Label calHour;
 			if(i < 12) {
 			String hour = Integer.toString(i + 1);
-			calHour = new Label(hour + "am");
+				if(i == 11) {
+					calHour = new Label(hour + "pm");
+				}
+				else calHour = new Label(hour + "am");
 			}
 			else {
 			String hour = Integer.toString(i - 11);
-			calHour = new Label(hour + "pm");
+				if(i == 23) {
+					calHour = new Label(hour + "am");
+				}
+				else calHour = new Label(hour + "pm");
 			}
 			calendar.add(calHour, i+1, 1);
 		}
+		//adds each row
 		char[] daysOfWeek = new char[] {'S','M','T','W','T','F','S'};
 		for(int i = 0; i < 7; i++) {
 			String dayLabel = Character.toString(daysOfWeek[i]);
