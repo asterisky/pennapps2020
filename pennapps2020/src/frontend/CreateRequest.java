@@ -3,6 +3,7 @@ package frontend;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
+import data.User;
 import javafx.application.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -216,6 +217,11 @@ public class CreateRequest extends Application implements EventHandler{
 		EventHandler<ActionEvent> buttonClick = new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
+//				if(nameField.getText() != null && emailField.getText() != null && !nameField.getText().isEmpty() && !emailField.getText().isEmpty()) {
+//					User newUser = new User(nameField.getText(), emailField.getText());
+//					System.out.println("Collected new user " + newUser.getName() + " - email: " + newUser.getEmail());
+//				}
+				
 					window.setScene(selTimes);
 				
 			}
