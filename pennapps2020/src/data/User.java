@@ -41,16 +41,18 @@ public class User {
 	
 	// Constructor
 	
-	/**
-	 * Creates an user with given name and email, and initialize all fields
-	 */
-	public User(String name, String email) {
-		this.setName(name);
-		this.setEmail(email);
-		
-		this.setlocalTimeDate();
-		this.setStandardTimeDate();
-	}
+//	/**
+//	 * Creates an user with given name and email, and initialize all fields
+//	 */
+//	public User(String name, String email) {
+//		this.setName(name);
+//		this.setEmail(email);
+//
+//		this.setlocalTimeDate();
+//		this.setStandardTimeDate();
+//	}
+//
+
 	
 	// Getter functions
 	

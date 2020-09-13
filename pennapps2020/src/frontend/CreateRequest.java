@@ -4,7 +4,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import data.User;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import javafx.application.*;
 import javafx.beans.value.ChangeListener;
@@ -28,7 +30,11 @@ public class CreateRequest extends Application implements EventHandler{
 
 	Stage window;
 	Scene home, selCourse, userInfo, selTimes, submitted;
-
+	String course;
+	String name;
+	String event;
+	String email;
+	int[][] timetable;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception{
@@ -111,41 +117,55 @@ public class CreateRequest extends Application implements EventHandler{
 		selCorLabel.setFont(Font.font("Arial", 30));
 		selCorLabel.setTextFill(Color.BLUE);
 
+
+		Button c591 = new Button("591");
+		Button c592 = new Button("592");
+		Button c593 = new Button("593");
+		Button c594 = new Button("594");
+		Button c595 = new Button("595");
+		Button c596 = new Button("596");
+
+
 		//event handler for button click
 		EventHandler<ActionEvent> buttonClick = new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
+				String origin = "";
+				Button source = (Button) e.getSource();
+				origin=source.getText();
+				//System.out.println(origin);
+				course = origin; //set value
 				window.setScene(userInfo);
 
 			}
 		};
 
-		Button c591 = new Button("591");
+
 		c591.setMinSize(65,50);
 		c591.setFont(Font.font("Arial", 22));
 		c591.setOnAction(buttonClick);
 
-		Button c592 = new Button("592");
+
 		c592.setMinSize(65,50);
 		c592.setFont(Font.font("Arial", 22));
 		c592.setOnAction(buttonClick);
 
-		Button c593 = new Button("593");
+
 		c593.setMinSize(65,50);
 		c593.setFont(Font.font("Arial", 22));
 		c593.setOnAction(buttonClick);
 
-		Button c594 = new Button("594");
+
 		c594.setMinSize(65,50);
 		c594.setFont(Font.font("Arial", 22));
 		c594.setOnAction(buttonClick);
 
-		Button c595 = new Button("595");
+
 		c595.setMinSize(65,50);
 		c595.setFont(Font.font("Arial", 22));
 		c595.setOnAction(buttonClick);
 
-		Button c596 = new Button("596");
+
 		c596.setMinSize(65,50);
 		c596.setFont(Font.font("Arial", 22));
 		c596.setOnAction(buttonClick);
@@ -206,14 +226,14 @@ public class CreateRequest extends Application implements EventHandler{
 		TextField emailField = new TextField();
 		emailField.setMaxWidth(350.00);
 
-		Label dropLabel = new Label("Time: ");
-		dropLabel.setFont(Font.font("Arial", 16));
-		ObservableList<String> timezones = FXCollections.observableArrayList(
-				"Timezone1",
-				"Timezone2",
-				"Timezone3"
-		);
-		ComboBox timeDropdown = new ComboBox(timezones);
+//		Label dropLabel = new Label("Time: ");
+//		dropLabel.setFont(Font.font("Arial", 16));
+//		ObservableList<String> timezones = FXCollections.observableArrayList(
+//				"Timezone1",
+//				"Timezone2",
+//				"Timezone3"
+//		);
+//		ComboBox timeDropdown = new ComboBox(timezones);
 
 		//event handler for button click
 		EventHandler<ActionEvent> buttonClick = new EventHandler<ActionEvent>() {
@@ -223,6 +243,8 @@ public class CreateRequest extends Application implements EventHandler{
 //					User newUser = new User(nameField.getText(), emailField.getText());
 //					System.out.println("Collected new user " + newUser.getName() + " - email: " + newUser.getEmail());
 //				}
+				email = emailField.getText();
+				name = nameField.getText();
 
 				window.setScene(selTimes);
 
@@ -239,8 +261,8 @@ public class CreateRequest extends Application implements EventHandler{
 		uInfo.add(nameField, 1, 2);
 		uInfo.add(emailLabel, 0, 3);
 		uInfo.add(emailField, 1, 3);
-		uInfo.add(dropLabel, 0, 4);
-		uInfo.add(timeDropdown, 1, 4);
+//		uInfo.add(dropLabel, 0, 4);
+//		uInfo.add(timeDropdown, 1, 4);
 		uInfo.add(submitInfo, 1, 6);
 
 
@@ -336,7 +358,7 @@ public class CreateRequest extends Application implements EventHandler{
 
 		Label monday = new Label("Monday");
 		ListView<Integer> listMon = new ListView<>(items);
-		ListView<Integer> selectedMon = new ListView<>();
+	//	ListView<Integer> selectedMon = new ListView<>();
 		// Create the Season VBox
 		VBox mondaySelection = new VBox();
 		// Set Spacing to 10 pixels
@@ -345,22 +367,22 @@ public class CreateRequest extends Application implements EventHandler{
 		mondaySelection.getChildren().addAll(monday,listMon);
 		//set this to SINGLE to allow selecting just one item
 		listMon.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		listMon.getSelectionModel().selectedItemProperty().addListener((obs,ov,nv)->{
-			selectedMon.setItems(listMon.getSelectionModel().getSelectedItems());
-		});
+//		listMon.getSelectionModel().selectedItemProperty().addListener((obs,ov,nv)->{
+//			selectedMon.setItems(listMon.getSelectionModel().getSelectedItems());
+//		});
 
 		Label tuesday = new Label("Tuesday");
 		ListView<Integer> listTue = new ListView<>(items);
-		ListView<Integer> selectedTue = new ListView<>();
+//		ListView<Integer> selectedTue = new ListView<>();
 		VBox tuesdaySelection = new VBox();
 		// Set Spacing to 10 pixels
 		tuesdaySelection.setSpacing(10);
 		// Add the Label and the List to the VBox
 		tuesdaySelection.getChildren().addAll(tuesday,listTue);
 		listTue.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		listTue.getSelectionModel().selectedItemProperty().addListener((obs,ov,nv)->{
-			selectedTue.setItems(listTue.getSelectionModel().getSelectedItems());
-		});
+//		listTue.getSelectionModel().selectedItemProperty().addListener((obs,ov,nv)->{
+//			selectedTue.setItems(listTue.getSelectionModel().getSelectedItems());
+//		});
 
 		Label wednesday = new Label("Wednesday");
 		ListView<Integer> listWed = new ListView<>(items);
@@ -371,22 +393,22 @@ public class CreateRequest extends Application implements EventHandler{
 		// Add the Label and the List to the VBox
 		wednesdaySelection.getChildren().addAll(wednesday,listWed);
 		listWed.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		listWed.getSelectionModel().selectedItemProperty().addListener((obs,ov,nv)->{
-			selectedWed.setItems(listWed.getSelectionModel().getSelectedItems());
-		});
+//		listWed.getSelectionModel().selectedItemProperty().addListener((obs,ov,nv)->{
+//			selectedWed.setItems(listWed.getSelectionModel().getSelectedItems());
+//		});
 
 		Label thursday = new Label("Thursday");
 		ListView<Integer> listThu = new ListView<>(items);
-		ListView<Integer> selectedThu = new ListView<>();
+	//	ListView<Integer> selectedThu = new ListView<>();
 		VBox thursdaySelection = new VBox();
 		// Set Spacing to 10 pixels
 		thursdaySelection.setSpacing(10);
 		// Add the Label and the List to the VBox
 		thursdaySelection.getChildren().addAll(thursday,listThu);
 		listThu.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		listThu.getSelectionModel().selectedItemProperty().addListener((obs,ov,nv)->{
-			selectedThu.setItems(listThu.getSelectionModel().getSelectedItems());
-		});
+//		listThu.getSelectionModel().selectedItemProperty().addListener((obs,ov,nv)->{
+//			selectedThu.setItems(listThu.getSelectionModel().getSelectedItems());
+//		});
 
 		Label friday = new Label("Friday");
 		ListView<Integer> listFri = new ListView<>(items);
@@ -397,35 +419,37 @@ public class CreateRequest extends Application implements EventHandler{
 		// Add the Label and the List to the VBox
 		fridaySelection.getChildren().addAll(friday,listFri);
 		listFri.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		listFri.getSelectionModel().selectedItemProperty().addListener((obs,ov,nv)->{
-			selectedFri.setItems(listFri.getSelectionModel().getSelectedItems());
-		});
+//		listFri.getSelectionModel().selectedItemProperty().addListener((obs,ov,nv)->{
+//			selectedFri.setItems(listFri.getSelectionModel().getSelectedItems());
+//		});
+
+
 
 		Label saturday = new Label("Saturday");
 		ListView<Integer> listSat = new ListView<>(items);
-		ListView<Integer> selectedSat = new ListView<>();
+	//	ListView<Integer> selectedSat = new ListView<>();
 		VBox saturdaySelection = new VBox();
 		// Set Spacing to 10 pixels
 		saturdaySelection.setSpacing(10);
 		// Add the Label and the List to the VBox
 		saturdaySelection.getChildren().addAll(saturday,listSat);
 		listSat.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		listSat.getSelectionModel().selectedItemProperty().addListener((obs,ov,nv)->{
-			selectedSat.setItems(listSat.getSelectionModel().getSelectedItems());
-		});
+//		listSat.getSelectionModel().selectedItemProperty().addListener((obs,ov,nv)->{
+//			selectedSat.setItems(listSat.getSelectionModel().getSelectedItems());
+//		});
 
 		Label sunday = new Label("Saturday");
 		ListView<Integer> listSun = new ListView<>(items);
-		ListView<Integer> selectedSun = new ListView<>();
+		//ListView<Integer> selectedSun = new ListView<>();
 		VBox sundaySelection = new VBox();
 		// Set Spacing to 10 pixels
 		sundaySelection.setSpacing(10);
 		// Add the Label and the List to the VBox
 		sundaySelection.getChildren().addAll(sunday,listSun);
 		listSun.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		listSun.getSelectionModel().selectedItemProperty().addListener((obs,ov,nv)->{
-			selectedSun.setItems(listSun.getSelectionModel().getSelectedItems());
-		});
+//		listSun.getSelectionModel().selectedItemProperty().addListener((obs,ov,nv)->{
+//			selectedSun.setItems(listSun.getSelectionModel().getSelectedItems());
+//		});
 
 		listMon.setMaxWidth(75);
 		listMon.setPrefHeight(580);
@@ -447,6 +471,24 @@ public class CreateRequest extends Application implements EventHandler{
 		EventHandler<ActionEvent> buttonClick = new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
+				timetable = new int[7][24];
+				HashMap<String,List<Integer>> hm = new HashMap<>();
+				hm.put("mon",listMon.getSelectionModel().getSelectedItems());
+				hm.put("tue",listTue.getSelectionModel().getSelectedItems());
+				hm.put("wed",listWed.getSelectionModel().getSelectedItems());
+				hm.put("thu",listThu.getSelectionModel().getSelectedItems());
+				hm.put("fri",listFri.getSelectionModel().getSelectedItems());
+				hm.put("sat",listSat.getSelectionModel().getSelectedItems());
+				hm.put("sun",listSun.getSelectionModel().getSelectedItems());
+
+				int rowIdx = 0;
+				for(String key : hm.keySet()){
+					for(Integer j: hm.get(key)){
+						timetable[rowIdx][j] = 1;
+					}
+					rowIdx++;
+				}
+
 				window.setScene(submitted);
 
 			}
