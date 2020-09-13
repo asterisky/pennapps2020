@@ -2,8 +2,6 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="pennapps2020/src"/>
-	<classpathentry kind="lib" path="pennapps2020/activation.jar"/>
-	<classpathentry kind="lib" path="pennapps2020/javax.mail.jar"/>
 	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

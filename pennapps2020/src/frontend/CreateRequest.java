@@ -36,6 +36,7 @@ public class CreateRequest extends Application implements EventHandler{
 	String email;
 	int[][] timetable;
 
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception{
 		//set up the window and pane (grid for objects)
@@ -225,16 +226,36 @@ public class CreateRequest extends Application implements EventHandler{
 		emailLabel.setFont(Font.font("Arial", 16));
 		TextField emailField = new TextField();
 		emailField.setMaxWidth(350.00);
-
-//		Label dropLabel = new Label("Time: ");
-//		dropLabel.setFont(Font.font("Arial", 16));
-//		ObservableList<String> timezones = FXCollections.observableArrayList(
-//				"Timezone1",
-//				"Timezone2",
-//				"Timezone3"
-//		);
-//		ComboBox timeDropdown = new ComboBox(timezones);
-
+		
+		Label dropLabel = new Label("Time: ");
+		dropLabel.setFont(Font.font("Arial", 16));
+		ObservableList<String> timezones = FXCollections.observableArrayList(
+			"GMT/UTC +0:00",
+			"European Central +1:00",
+			"Eastern European/Egypt Standard +2:00",
+			"Eastern African +3:00",
+			"Near East +4:00",
+			"Pakistan Lahore +5:00",
+			"Bangladesh Standard +6:00",
+			"Vietnam Standard +7:00",
+			"China Taiwan +8:00",
+			"Japan Standard +9:00",
+			"Australia Eastern +10:00",
+			"Solomon Standard +11:00",
+			"New Zealand Standard +12:00",
+			"Midway Islands -11:00",
+			"Hawaii Standard -10:00",
+			"Alaska Standard -9:00",
+			"Pacific Standard -8:00",
+			"Mountain Standard -7:00",
+			"Central Standard -6:00",
+			"Eastern Standard -5:00",
+			"Puerto Rico/US Virgin Isles -4:00",
+			"Argentina Standard -3:00",
+			"Central African -1:00"
+		);
+		ComboBox timeDropdown = new ComboBox(timezones);
+		
 		//event handler for button click
 		EventHandler<ActionEvent> buttonClick = new EventHandler<ActionEvent>() {
 			@Override
@@ -261,12 +282,12 @@ public class CreateRequest extends Application implements EventHandler{
 		uInfo.add(nameField, 1, 2);
 		uInfo.add(emailLabel, 0, 3);
 		uInfo.add(emailField, 1, 3);
-//		uInfo.add(dropLabel, 0, 4);
-//		uInfo.add(timeDropdown, 1, 4);
+		uInfo.add(dropLabel, 0, 4);
+		uInfo.add(timeDropdown, 1, 4);
 		uInfo.add(submitInfo, 1, 6);
-
-
-
+		
+		
+		
 		userInfo = new Scene(uInfo);
 
 	}
