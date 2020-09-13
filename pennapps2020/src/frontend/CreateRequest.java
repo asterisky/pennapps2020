@@ -1,5 +1,8 @@
 package frontend;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 import javafx.application.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -9,6 +12,8 @@ import javafx.event.*;
 import javafx.geometry.*;
 import javafx.scene.*;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -19,7 +24,7 @@ import javafx.stage.*;
 public class CreateRequest extends Application implements EventHandler{
 	
 	Stage window;
-	Scene selCourse, userInfo, selTimes;
+	Scene home, selCourse, userInfo, selTimes;
 
 	
 	@Override
@@ -29,13 +34,61 @@ public class CreateRequest extends Application implements EventHandler{
 		primaryStage.setTitle("STuINDER");
 		
 		//create scenes
+		setHome();
 		setCourseSel();
 		setUserInfo();
 		setSelTimes();
 		
 		//add the pane to the scene
-		primaryStage.setScene(selCourse);
+		primaryStage.setScene(home);
 		primaryStage.show();
+	}
+	
+	protected void setHome() throws FileNotFoundException {
+		//page to request user info
+		//set up pane
+		GridPane splash = new GridPane();
+		splash.setMinSize(500, 500);
+		splash.setPadding(new Insets(25,25,25,25));
+		splash.setVgap(10);
+		splash.setHgap(10);
+		
+		
+		//set buttons and labels
+//		FileInputStream picStream = new FileInputStream("/pennapps2020/pennapps2020/logo.png");
+//		Image image = new Image(picStream);
+//		ImageView banner = new ImageView(image);
+		
+//		Group root = new Group(banner);
+//		root.getChildren().add(splash);
+		
+		Label greeting = new Label("An app for finding and organizing a study group.");
+		greeting.setFont(Font.font("Arial", 25));
+		greeting.setTextFill(Color.BLUE);
+		greeting.setAlignment(Pos.CENTER);
+		
+		
+		//event handler for button click
+		EventHandler<ActionEvent> buttonClick = new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent e) {
+					window.setScene(selCourse);
+				
+			}
+		};
+		Button start = new Button("find a study group");
+		start.setMinSize(65,50);
+		start.setFont(Font.font("Arial", 22));
+		start.setOnAction(buttonClick);
+		
+		//add elements to layout
+		splash.add(greeting, 1, 0);
+		splash.add(start, 1, 1);
+		
+		
+		
+		home = new Scene(splash);
+
 	}
 
 	protected void setCourseSel() {
